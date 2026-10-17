@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f8fafc"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="生活OSログ"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-180.png"><link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png"><title>生活OSログ | Ver.1.39 PWA</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN',sans-serif;color:#202b37;background:#f8fafc;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #7da5eb;outline-offset:2px}main{max-width:430px;min-height:100dvh;margin:auto;padding:20px 17px 28px;background:#fff}.heading{display:flex;justify-content:space-between;align-items:center;margin:8px 0 18px}h1{font-size:25px;margin:0}h2{font-size:21px;margin:0 0 10px}p{line-height:1.6}.muted{color:#6c7784;font-size:13px}.menu{display:grid;gap:10px}.menu button{display:flex;align-items:center;gap:14px;text-align:left;width:100%;min-height:76px;border:1px solid #e0e6eb;background:#f3f6f9;border-radius:14px;padding:12px 16px;color:#253241}.emoji{font-size:25px;width:31px}.menu strong{font-size:17px}.menu small{display:block;font-size:12px;color:#6c7784;margin-top:4px}.arrow{margin-left:auto;color:#87919d;font-size:22px}.backup{margin-top:34px;border-top:1px solid #e4e8eb;padding-top:20px;text-align:center}.backup button,.tool{background:#fff;border:1px solid #ced7df;border-radius:10px;padding:10px 13px;color:#263544}.topline{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:22px}.topline button{padding:8px 12px;border-radius:8px;border:1px solid #d5dce4;background:#f5f7f9}.card{border:1px solid #dce3e9;background:#f7f9fb;border-radius:12px;padding:15px;margin:12px 0}.placeholder{color:#566270}.note{padding:10px 12px;background:#eaf2ff;border-radius:9px;font-size:13px}.foot{margin-top:25px;text-align:center;font-size:12px;color:#73808b}.row{display:flex;gap:9px;align-items:center}.grid{display:grid;gap:5px;grid-template-columns:repeat(7,minmax(0,1fr))}.week{text-align:center;font-size:12px;color:#758292;padding:5px 0}.day{border:1px solid #dfe5ea;border-radius:5px;min-width:0;min-height:78px;padding:4px 0;background:#f3f5f8;text-align:center;display:flex;flex-direction:column;justify-content:space-around;align-items:center;font-size:10px;white-space:nowrap;overflow:hidden}.day .date{font-size:13px;font-weight:700}.day .date.sunholiday{color:#c62828!important}.day .date.saturday{color:#1768b5!important}.day.purple .date.sunholiday{color:#ffb7b7!important}.day.purple .date.saturday{color:#bcdcff!important}.day.green{background:#d9efcf;color:#000}.day.pink{background:#f9c9da;color:#000}.day.purple{background:#8655ac;color:white}.day.short{border:2px solid #d92732}.day .money{font-size:9px;letter-spacing:-.25px}.ctrl{display:flex;align-items:center;justify-content:space-between;margin:10px 0}.ctrl button{border:1px solid #dce2e9;background:white;border-radius:8px;padding:8px}.label{font-weight:700;margin:18px 0 7px;display:block}textarea,input{width:100%;border:1px solid #cbd5e0;border-radius:8px;padding:12px;background:white;color:#26313e}textarea{min-height:140px;resize:vertical}.save{font-size:12px;color:#4d8064;margin-top:8px}.fatigue{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.fatigue button{padding:14px 0;border-radius:9px;border:1px solid #d4dae0}.fatigue .on{outline:3px solid #3f80be}.act{color:#111111;border:1px solid #111111;border-radius:13px;padding:19px;width:100%;font-size:19px;font-weight:700}.act.wake{background:#ffffff}.act.bed{background:#b39ddb}.sleepinfo{font-size:13px;line-height:1.7;margin:12px 0}.sleepedit{display:grid;grid-template-columns:1fr;gap:8px}.sleepedit input{font-size:16px}.sleepactions{display:flex;gap:8px;flex-wrap:wrap}.sleepactions button{flex:1;min-width:110px}.target{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.target span{aspect-ratio:1;background:#eef2f6;border:1px dashed #bfcbd7;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#768392}.bar{background:#dfe6ed;height:17px;border-radius:10px;overflow:hidden}.bar>div{height:100%;background:#6298bb;width:57.1%}
+
+.money-panel{padding:15px;border:1px solid #d9e0e7;border-radius:13px;margin:12px 0;background:#f7f9fb}.money-panel h3{margin:0 0 9px;font-size:16px}.money-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.money-stat{border:1px solid #dbe1e6;border-radius:10px;padding:12px;background:#fff}.money-stat b{display:block;margin-top:5px;font-size:19px}.money-big{font-size:33px;font-weight:750;text-align:center;margin:8px 0}.money-centered{text-align:center}.money-muted{font-size:12px;color:#657181}.money-edit{display:grid;grid-template-columns:1fr 1fr;gap:10px}.money-panel input{min-width:0}.money-entry{display:flex;gap:9px;align-items:center;justify-content:space-between;border-bottom:1px solid #dce2e9;padding:10px 0}.money-entry:last-child{border:0}.money-actions{display:flex;gap:5px}.money-actions button{padding:7px 9px;border:1px solid #b9c5ce;border-radius:7px;background:white}.money-balance{height:17px;border-radius:9px;overflow:hidden;background:#d9e2ec}.money-balance div{height:100%;background:#6298bb;transition:none}.money-diff{display:inline-block;background:#263544;color:#ffda55;border-radius:7px;padding:6px 11px;font-size:17px;font-weight:750}.money-diff.positive{color:#a9f3c2}.money-diff.neutral{color:#fff}.money-panel .tool{margin-top:10px}
+
+.graph-modes{display:flex;gap:5px;flex-wrap:wrap;margin:12px 0}.graph-modes button,.graph-picks button{border:1px solid #bfccd9;border-radius:8px;background:white;color:#263544;padding:9px 10px;font-size:13px}.graph-modes button.active,.graph-picks button.active{background:#e2edfc;border:2px solid #2763a1;padding:8px 9px;font-weight:bold}.graph-picks{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.graph-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}.graph-row label{font-size:12px;color:#546474}.graph-row input,.graph-row select{font-size:15px;margin-top:4px;padding:9px}.graph-chart{border:1px solid #dce3e9;border-radius:12px;padding:8px 5px 2px;background:white;margin:12px 0}.graph-chart svg{display:block;width:100%;height:auto}.graph-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 3px;font-size:12px}.graph-dot{display:inline-block;width:12px;height:4px;border-radius:3px;vertical-align:middle;margin-right:4px}.graph-days{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0}.graph-days button{border:1px solid #cbd5e1;border-radius:7px;background:#f9fafc;padding:6px 8px}.graph-days button.active{background:#dbeafe;border-color:#2563eb}.graph-detail{padding:12px;background:#eef3f9;border:1px solid #d5e1ec;border-radius:10px;line-height:1.65;white-space:pre-wrap;word-break:break-word}.graph-note{font-size:12px;color:#5d6d7d;line-height:1.5}
+
+.goal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.goal-slot{min-width:0;border:1px solid #d7e0e8;border-radius:10px;background:#f4f7fa;padding:6px}.goal-thumb{width:100%;aspect-ratio:1;object-fit:cover;border-radius:7px;display:block;background:#e5ebf1}.goal-open{display:block;padding:0;width:100%;border:0;background:transparent}.goal-empty{height:auto;aspect-ratio:1;border:1px dashed #b9c6d3;background:#edf2f7;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px}.goal-actions{display:flex;gap:4px;margin-top:6px}.goal-actions button{min-width:0;flex:1;border:1px solid #c6d1dc;border-radius:6px;padding:7px 2px;background:white;font-size:12px}.goal-add{width:100%;margin-top:6px;padding:8px 2px;border:1px solid #b9c6d3;border-radius:6px;background:#fff;font-size:12px}.goal-viewer{position:fixed;inset:0;z-index:1000;background:rgba(9,14,23,.97);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);color:white}.goal-viewer-top{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 8px}.goal-viewer button{background:#293141;border:1px solid #687384;border-radius:9px;padding:10px 16px;color:white}.goal-photo-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;width:100%;touch-action:pan-y}.goal-photo-area img{max-width:100%;max-height:100%;object-fit:contain}.goal-viewer-bottom{display:flex;gap:14px;padding:15px}.goal-viewer-bottom button:disabled{opacity:.25}.goal-help{font-size:12px;color:#5d6876;line-height:1.6}
+</style>
+</head>
+<body><main id="app"></main>
+<script>
+'use strict';
+const app=document.getElementById('app');const pages=[['calendar','📅','カレンダー','日別記録を確認・編集'],['graph','📈','グラフ','生活データの比較'],['money','👛','お小遣い残高帳','残高と日割り余力'],['memo','📝','メモ','今日の出来事を記録'],['goal','🎯','目標','文章と写真6枚'],['sleep','🌙','起床／就寝','ワンタッチ記録']];
+const key='lifelog-prototype-v127';let data;try{data=JSON.parse(localStorage.getItem(key))||{}}catch{data={}};if(!data.days)data.days={};if(!data.goal)data.goal='';if(!Array.isArray(data.goalPhotos))data.goalPhotos=[];if(!Array.isArray(data.sleepEvents))data.sleepEvents=[];if(!data.allowance||typeof data.allowance!=='object')data.allowance={};if(!data.allowance.budgets)data.allowance.budgets={};if(!Array.isArray(data.allowance.extras))data.allowance.extras=[];let screen='calendar',offset=0,selectedDate='',lastAction=null;
+function save(){try{localStorage.setItem(key,JSON.stringify(data));return true}catch(e){alert('保存に失敗しました。端末の空き容量などを確認してください。');return false}}
+function lifeDate(){const d=new Date();if(d.getHours()<3)d.setDate(d.getDate()-1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function esc(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function head(title){return `<div class="topline"><button data-nav="home">← メニュー</button><strong>${title}</strong><span class="muted">試作版</span></div>`}
+function nav(){app.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{screen=b.dataset.nav;render()})}
+function showHome(){app.innerHTML=`<div class="heading"><div><h1>生活OSログ</h1><div class="muted">自分のペースで、毎日の記録を。</div></div><span class="muted">Ver.1.39 PWA版</span></div><div class="menu">${pages.map(p=>`<button data-nav="${p[0]}"><span class="emoji">${p[1]}</span><span><strong>${p[2]}</strong><small>${p[3]}</small></span><span class="arrow">›</span></button>`).join('')}</div><div class="backup"><button data-nav="backup">⇩ バックアップ用データ出力</button></div><div class="foot">操作確認用の初期試作品です（便通・天気・日付色を更新）</div>`;nav()}
+function dates(start,count){return Array.from({length:count},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);return d})}
+function iso(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+// Japanese national holidays for 2000–2099; includes substitute and citizens' holidays.
+function japanHoliday(d){
+ const y=d.getFullYear(),m=d.getMonth()+1,n=d.getDate();if(y<2000||y>2099)return false;
+ const fixed=[[1,1],[2,11],[2,23],[4,29],[5,3],[5,4],[5,5],[8,11],[11,3],[11,23]];
+ const holidays=new Set(fixed.map(([mm,dd])=>`${mm}-${dd}`));
+ const nth=(mm,weekday,index)=>{let a=new Date(y,mm-1,1).getDay();return 1+(weekday-a+7)%7+7*(index-1)};
+ holidays.add(`1-${nth(1,1,2)}`);holidays.add(`7-${nth(7,1,3)}`);holidays.add(`9-${nth(9,1,3)}`);holidays.add(`10-${nth(10,1,2)}`);
+ const spring=Math.floor(20.8431+0.242194*(y-1980)-Math.floor((y-1980)/4));
+ const autumn=Math.floor(23.2488+0.242194*(y-1980)-Math.floor((y-1980)/4));
+ holidays.add(`3-${spring}`);holidays.add(`9-${autumn}`);
+ // Historical exceptions / renamed holidays; keep the beta focused on current years.
+ if(y===2020||y===2021){holidays.delete(`7-${nth(7,1,3)}`);holidays.delete(`10-${nth(10,1,2)}`);holidays.delete('8-11');holidays.add(y===2020?'7-23':'7-22');holidays.add(y===2020?'7-24':'7-23');holidays.add(y===2020?'8-10':'8-8');}
+ // Citizens' holidays, then substitute holiday (Monday or next available day).
+ for(let day=2;day<=364;day++){let dt=new Date(y,0,day),prev=new Date(y,0,day-1),next=new Date(y,0,day+1);let k=x=>`${x.getMonth()+1}-${x.getDate()}`;if(dt.getDay()!==0&&holidays.has(k(prev))&&holidays.has(k(next)))holidays.add(k(dt));}
+ const original=[...holidays];for(const k of original){let [mm,dd]=k.split('-').map(Number);let date=new Date(y,mm-1,dd);if(date.getDay()===0){let sub=new Date(date);do{sub.setDate(sub.getDate()+1)}while(holidays.has(`${sub.getMonth()+1}-${sub.getDate()}`));holidays.add(`${sub.getMonth()+1}-${sub.getDate()}`)}}
+ return holidays.has(`${m}-${n}`)
+}
+function showCalendar(){const now=new Date(),sun=new Date(now.getFullYear(),now.getMonth(),now.getDate()-now.getDay()+offset*7),days=dates(sun,28);app.innerHTML=head('カレンダー')+`<div class="ctrl"><button id="prev">↑ 前週</button><strong>${days[14].getFullYear()}年${days[14].getMonth()+1}月</strong><button id="next">翌週 ↓</button></div><div class="muted" style="text-align:center;margin-bottom:9px">${days[0].getMonth()+1}/${days[0].getDate()} 〜 ${days[27].getMonth()+1}/${days[27].getDate()}</div><div class="grid">${['日','月','火','水','木','金','土'].map((x,i)=>`<div class="week" style="color:${i===0?'#c33':i===6?'#367abf':'inherit'}">${x}</div>`).join('')}${days.map(d=>{const r=data.days[iso(d)]||{};const f=r.fatigue;let cls=f===9?'purple':f>=7?'pink':f<=3&&f!==undefined?'green':'';const h=r.hours;return `<button class="day ${cls} ${h!==undefined&&h<7?'short':''}" data-day="${iso(d)}"><span class="date ${japanHoliday(d)||d.getDay()===0?'sunholiday':d.getDay()===6?'saturday':''}">${d.getDate()}</span><span>疲${f??'—'}</span><span>${h===undefined?'—':Number(h).toFixed(1)+'h'}</span><span>${r.bowel??'—'}</span><span>${r.weight??'—'}</span><span class="money">${r.spending??'—'}</span></button>`}).join('')}</div><p class="muted">上下スワイプ・前週／翌週ボタンで7日移動。1日を押すと入力画面へ。</p><button id="quickSleep" class="act ${data.nextSleep==='就寝'?'bed':'wake'}" style="margin-top:10px">${data.nextSleep==='就寝'?'🌙 就寝':'☀️ 起床'}を記録</button>`;nav();app.querySelector('#prev').onclick=()=>{offset--;render()};app.querySelector('#next').onclick=()=>{offset++;render()};app.querySelector('#quickSleep').onclick=()=>{recordSleep();render()};app.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{selectedDate=b.dataset.day;screen='entry';render()});const grid=app.querySelector('.grid');let sy=null,sx=null;grid.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;sx=e.touches[0].clientX},{passive:true});grid.addEventListener('touchend',e=>{if(sy===null)return;let dy=e.changedTouches[0].clientY-sy,dx=e.changedTouches[0].clientX-sx;sy=null;if(Math.abs(dy)>38&&Math.abs(dy)>Math.abs(dx)*1.3){offset+=dy<0?1:-1;render()}},{passive:true})}
+function showEntry(){let r=data.days[selectedDate]||{},f=r.fatigue;app.innerHTML=head('日別入力')+`<h2>${esc(selectedDate)} の記録</h2><span class="label">疲れ（0〜9）</span><div class="fatigue">${Array.from({length:10},(_,i)=>`<button data-f="${i}" style="background:${i===9?'#8655ac':i>=7?'#f9c9da':i<=3?'#d9efcf':'#f0f2f5'};color:${i===9?'white':'black'}" class="${f===i?'on':''}">${i}</button>`).join('')}</div><label class="label">睡眠時間（時間）</label><input id="hours" type="number" min="0" max="24" step="0.5" inputmode="decimal" value="${esc(r.hours??'')}"><label class="label">便通</label><div class="row"><button class="tool" data-b="○">○ 普通</button><button class="tool" data-b="△">△ 少量</button><button class="tool" data-b="×">× なし</button><button class="tool" data-b="">—</button></div><label class="label">天気</label><div class="row" style="flex-wrap:wrap"><button class="tool" data-w="☀️">☀️ 晴</button><button class="tool" data-w="☁️">☁️ 曇</button><button class="tool" data-w="☔️">☔️ 雨</button><button class="tool" data-w="⛄️">⛄️ 雪</button><button class="tool" data-w="">—</button></div><label class="label">体重（kg）</label><input id="weight" type="number" step="0.1" inputmode="decimal" value="${esc(r.weight??'')}"><label class="label">お金（円）</label><input id="spending" type="number" min="0" step="1" inputmode="numeric" value="${esc(r.spending??'')}"><label class="label">メモ</label><textarea id="entrymemo">${esc(r.memo??'')}</textarea><div class="save">変更はこの端末に自動保存します</div><div class="note">睡眠ボタンによる就寝・起床のペアから睡眠時間を自動表示します。手入力の時間も残せます。</div><p><button class="tool" data-nav="calendar">← カレンダーにもどる</button></p>`;nav();const change=(k,v)=>{const rr=data.days[selectedDate]||(data.days[selectedDate]={});if(v===''||v===null)delete rr[k];else rr[k]=v;if(k==='hours'){delete rr.autoSleep;delete rr.bedTime;delete rr.wakeTime}save()};app.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{change('fatigue',Number(b.dataset.f));app.querySelectorAll('[data-f]').forEach(el=>el.classList.toggle('on',el===b))});app.querySelectorAll('[data-b]').forEach(b=>{b.style.background=(r.bowel??'')===b.dataset.b?'#d9efcf':'white';b.onclick=()=>{change('bowel',b.dataset.b);app.querySelectorAll('[data-b]').forEach(el=>el.style.background=el===b?'#d9efcf':'white')}});app.querySelectorAll('[data-w]').forEach(b=>{b.style.background=(r.weather??'')===b.dataset.w?'#d9efcf':'white';b.onclick=()=>{change('weather',b.dataset.w);app.querySelectorAll('[data-w]').forEach(el=>el.style.background=el===b?'#d9efcf':'white')}});['hours','weight','spending','entrymemo'].forEach(id=>{const e=app.querySelector('#'+id),k=id==='entrymemo'?'memo':id;e.addEventListener('input',()=>change(k,e.value===''?'':id==='hours'?Number(e.value):e.value))})}
+function showMemo(){const day=lifeDate(),r=data.days[day]||{};app.innerHTML=head('メモ')+`<h2>今日のメモ</h2><p class="muted">生活日付：${day}（午前3時に切り替え）</p><textarea id="memo" placeholder="今日の出来事や気づいたこと">${esc(r.memo||'')}</textarea><div class="save">日別入力画面のメモと同じ場所に自動保存</div>`;nav();app.querySelector('#memo').oninput=e=>{(data.days[day]||(data.days[day]={})).memo=e.target.value;save()}}
+function eventTime(t){const d=new Date(t);return Number.isFinite(d.getTime())?d.toLocaleString('ja-JP',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}):'—'}
+function localValue(t){const d=new Date(t);if(!Number.isFinite(d.getTime()))return '';const n=v=>String(v).padStart(2,'0');return `${d.getFullYear()}-${n(d.getMonth()+1)}-${n(d.getDate())}T${n(d.getHours())}:${n(d.getMinutes())}`}
+function syncSleep(){
+ const events=data.sleepEvents||[];
+ // Clear only automatically generated durations, never hand-entered values.
+ for(const [date,r] of Object.entries(data.days)){if(r.autoSleep===true){delete r.hours;delete r.autoSleep;delete r.bedTime;delete r.wakeTime;}}
+ let pending=null;
+ for(const ev of events){
+  if(ev.kind==='就寝'){pending=ev;continue}
+  if(ev.kind!=='起床'||!pending)continue;
+  const start=new Date(pending.at),end=new Date(ev.at),hours=(end-start)/3600000;
+  if(Number.isFinite(hours)&&hours>0&&hours<=36){
+   const date=iso(end);const r=data.days[date]||(data.days[date]={});
+   // Do not silently overwrite manually entered durations.
+   if(r.hours===undefined||r.autoSleep===true){r.hours=Math.round(hours*10)/10;r.autoSleep=true;r.bedTime=pending.at;r.wakeTime=ev.at}
+  }
+  pending=null;
+ }
+ data.nextSleep=events.length?(events[events.length-1].kind==='就寝'?'起床':'就寝'):(data.nextSleep||'起床');
+}
+function recordSleep(){
+ const kind=data.nextSleep==='就寝'?'就寝':'起床';
+ data.sleepEvents.push({kind,at:new Date().toISOString()});
+ data.lastSleep=`${kind}：${new Date().toLocaleString('ja-JP')}`;
+ data.nextSleep=kind==='就寝'?'起床':'就寝';
+ syncSleep();save();
+}
+function showSleep(){
+ const evs=data.sleepEvents||[],last=evs[evs.length-1],prev=evs[evs.length-2];
+ const next=data.nextSleep==='就寝'?'就寝':'起床';
+ const pending=last?.kind==='就寝'?last:null;
+ const recentDay=last?.kind==='起床'?data.days[iso(new Date(last.at))]:null;
+ app.innerHTML=head('起床／就寝')+`<h2>ワンタッチ睡眠記録</h2>
+ <p class="muted">ボタンを押した日時を保存し、就寝→起床で睡眠時間を自動計算します。</p>
+ <button class="act ${next==='就寝'?'bed':'wake'}" id="sleep">${next==='就寝'?'🌙 就寝':'☀️ 起床'}を記録</button>
+ <div class="sleepinfo">${pending?`就寝記録：${esc(eventTime(pending.at))}<br>次の起床を待っています。`:recentDay?.autoSleep?`直近の睡眠：<strong>${Number(recentDay.hours).toFixed(1)}h</strong><br>就寝 ${esc(eventTime(recentDay.bedTime))}<br>起床 ${esc(eventTime(recentDay.wakeTime))}`:last?`直近：${esc(last.kind)} ${esc(eventTime(last.at))}`:'この版での睡眠記録はまだありません。'}</div>
+ <div class="sleepactions"><button class="tool" id="undo" ${last?'':'disabled'}>直前の記録を取り消す</button></div>
+ <h2 style="margin-top:25px">記録時刻の修正</h2>
+ ${last?`<p class="muted">最新の記録を編集できます。保存すると睡眠時間を再計算します。</p><label class="label" for="sleepdatetime">${esc(last.kind)}日時</label><div class="sleepedit"><input id="sleepdatetime" type="datetime-local" value="${esc(localValue(last.at))}"><button class="tool" id="fixsleep">時刻を修正</button></div>`:'<p class="muted">睡眠ボタンを押すと時刻を修正できます。</p>'}
+ <p class="note">既存の手入力睡眠時間は上書きしません。すでに手入力した日の自動計算を使いたい場合は、その日の睡眠時間欄を一度空欄にしてください。</p>`;
+ nav();app.querySelector('#sleep').onclick=()=>{recordSleep();showSleep()};
+ app.querySelector('#undo').onclick=()=>{if(!data.sleepEvents.length)return;data.sleepEvents.pop();syncSleep();save();showSleep()};
+ const fix=app.querySelector('#fixsleep');if(fix)fix.onclick=()=>{const val=app.querySelector('#sleepdatetime').value;const dt=new Date(val);if(!val||!Number.isFinite(dt.getTime())){alert('日時を確認してください');return}data.sleepEvents[data.sleepEvents.length-1].at=dt.toISOString();syncSleep();save();showSleep()};
+}
+// Images are resized before localStorage. This keeps a six-photo goal practical on phones.
+function goalCompress(file){return new Promise((resolve,reject)=>{
+ if(!file.type.startsWith('image/')){reject(new Error('画像ファイルを選んでください。'));return}
+ const url=URL.createObjectURL(file),img=new Image();
+ img.onload=()=>{try{const max=850,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);const encoded=canvas.toDataURL('image/jpeg',.72);URL.revokeObjectURL(url);resolve(encoded)}catch(e){URL.revokeObjectURL(url);reject(e)}};
+ img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('画像を読み込めませんでした。別の写真形式で試してください。'))};img.src=url;
+})}
+let goalViewerIndex=-1;
+function showGoal(){
+ const photos=data.goalPhotos||[];
+ app.innerHTML=head('目標')+`<h2>目標・夢・楽しみにしていること</h2><textarea id="goal" placeholder="自由に書いてください">${esc(data.goal)}</textarea><div class="save">目標文章は自動保存</div><h2 style="margin-top:25px">写真（最大6枚）</h2><p class="goal-help">写真は小さくしてこの端末に保存します。写真をタップすると拡大できます。</p><div class="goal-grid">${Array.from({length:6},(_,i)=>{const src=photos[i];return `<div class="goal-slot">${src?`<button class="goal-open" data-goal-open="${i}" aria-label="写真${i+1}を拡大"><img class="goal-thumb" src="${src}" alt="目標の写真${i+1}"></button><div class="goal-actions"><button data-goal-change="${i}">変更</button><button data-goal-delete="${i}">削除</button></div>`:`<div class="goal-empty">＋ ${i+1}</div><button class="goal-add" data-goal-add="${i}">追加</button>`}</div>`}).join('')}</div><input type="file" id="goalFile" accept="image/*" hidden><div id="goalStatus" class="muted" role="status"></div><div class="note">写真を含むデータはJSONでバックアップ・復元できます。画像の保存容量には制限があります。</div>`;
+ nav();app.querySelector('#goal').oninput=e=>{data.goal=e.target.value;save()};
+ const chooser=app.querySelector('#goalFile'),status=app.querySelector('#goalStatus');let slot=-1;
+ app.querySelectorAll('[data-goal-add],[data-goal-change]').forEach(b=>b.onclick=()=>{slot=Number(b.dataset.goalAdd??b.dataset.goalChange);chooser.value='';chooser.click()});
+ chooser.onchange=async()=>{const f=chooser.files?.[0];if(!f||slot<0)return;status.textContent='写真を保存しています…';try{const encoded=await goalCompress(f);const old=[...data.goalPhotos];const newer=[...old];if(slot>newer.length)slot=newer.length;newer[slot]=encoded;data.goalPhotos=newer;if(!save()){data.goalPhotos=old;return}showGoal()}catch(e){status.textContent=e.message||'写真の保存に失敗しました。'}};
+ app.querySelectorAll('[data-goal-delete]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.goalDelete);if(!confirm(`写真${i+1}を削除しますか？`))return;const old=[...data.goalPhotos];data.goalPhotos.splice(i,1);if(!save()){data.goalPhotos=old;return}showGoal()});
+ app.querySelectorAll('[data-goal-open]').forEach(b=>b.onclick=()=>openGoalViewer(Number(b.dataset.goalOpen)));
+}
+function openGoalViewer(index){
+ const photos=data.goalPhotos||[];if(!photos[index])return;goalViewerIndex=index;
+ const overlay=document.createElement('div');overlay.className='goal-viewer';overlay.id='goalViewer';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-label','目標写真の拡大表示');
+ overlay.innerHTML=`<div class="goal-viewer-top"><strong id="goalCount"></strong><button id="goalClose">閉じる ✕</button></div><div class="goal-photo-area" id="goalPhotoArea"><img id="goalFullImage" alt="目標の写真"></div><div class="goal-viewer-bottom"><button id="goalPhotoPrev">← 前</button><button id="goalPhotoNext">次 →</button></div>`;
+ document.body.appendChild(overlay);
+ const paint=()=>{const list=data.goalPhotos||[];overlay.querySelector('#goalCount').textContent=`${goalViewerIndex+1} / ${list.length}`;overlay.querySelector('#goalFullImage').src=list[goalViewerIndex];overlay.querySelector('#goalPhotoPrev').disabled=goalViewerIndex<=0;overlay.querySelector('#goalPhotoNext').disabled=goalViewerIndex>=list.length-1};
+ const close=()=>{overlay.remove();document.removeEventListener('keydown',keys)};
+ const move=step=>{goalViewerIndex=Math.max(0,Math.min(photos.length-1,goalViewerIndex+step));paint()};
+ const keys=e=>{if(e.key==='Escape')close();else if(e.key==='ArrowLeft')move(-1);else if(e.key==='ArrowRight')move(1)};
+ overlay.querySelector('#goalClose').onclick=close;overlay.querySelector('#goalPhotoPrev').onclick=()=>move(-1);overlay.querySelector('#goalPhotoNext').onclick=()=>move(1);
+ const area=overlay.querySelector('#goalPhotoArea');let touchX=null,touchY=null;area.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;touchY=e.touches[0].clientY},{passive:true});area.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;touchX=null;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1)},{passive:true});
+ document.addEventListener('keydown',keys);paint();overlay.querySelector('#goalClose').focus();
+}
+function moneyDate(x){return new Date(x.getFullYear(),x.getMonth(),x.getDate())}
+function monthCycle(ref){const d=moneyDate(ref);if(d.getDate()<25)d.setMonth(d.getMonth()-1);return new Date(d.getFullYear(),d.getMonth(),25)}
+function shiftMonth25(d,step){return new Date(d.getFullYear(),d.getMonth()+step,25)}
+function moneyDayCount(start){return Math.round((shiftMonth25(start,1)-start)/86400000)}
+function moneyPeriodKey(d){return iso(d)}
+function moneyForDay(key){const r=data.days[key]||{};if(r.spending===''||r.spending===undefined||r.spending===null)return 0;const n=Number(r.spending);return Number.isFinite(n)&&n>0?n:0}
+function moneyValue(v){return Math.round(v).toLocaleString('ja-JP')+'円'}
+function showMoney(){
+ const today=new Date(lifeDate()+'T12:00:00');
+ const current=monthCycle(today);
+ const selected=data.allowance.viewCycle?new Date(data.allowance.viewCycle+'T12:00:00'):current;
+ const periodStart=new Date(selected.getFullYear(),selected.getMonth(),25);
+ const periodEnd=shiftMonth25(periodStart,1);
+ const endInclusive=new Date(periodEnd.getFullYear(),periodEnd.getMonth(),24);
+ const key=moneyPeriodKey(periodStart);
+ const budget=Number(data.allowance.budgets[key]||0);
+ const totalDays=moneyDayCount(periodStart);
+ const currentCycle=key===moneyPeriodKey(current);
+ const cutoff=today<periodStart?new Date(periodStart.getTime()-86400000):today>=periodEnd?endInclusive:today;
+ const remaining= today<periodStart?totalDays:today>=periodEnd?0:Math.max(0,Math.round((periodEnd-today)/86400000));
+ const pastPeriod=today>=periodEnd;
+ let expenses=0;
+ for(let d=new Date(periodStart);d<=cutoff&&d<periodEnd;d.setDate(d.getDate()+1))expenses+=moneyForDay(iso(d));
+ const extras=data.allowance.extras.filter(e=>e.date>=key&&e.date<iso(periodEnd));
+ const activeExtras=extras.filter(e=>e.date<=iso(cutoff));
+ const extraTotal=activeExtras.reduce((sum,e)=>sum+(Number(e.amount)||0),0);
+ const available=budget+extraTotal;
+ const balance=available-expenses;
+ const baseline=budget/totalDays;
+ const daily=remaining>0?balance/remaining:0;
+ const diff=daily-baseline;
+ const percent=available>0?Math.max(0,Math.min(100,balance/available*100)):0;
+ const needSave=remaining>0?Math.max(0,baseline*remaining-balance):0;
+ const moneyRows=extras.sort((a,b)=>a.date.localeCompare(b.date)).map(e=>`<div class="money-entry"><div><strong>${esc(e.date.slice(5).replace('-','/'))}</strong>　＋${moneyValue(Number(e.amount)||0)}${e.date>iso(cutoff)?'<div class="money-muted">まだ残高に加算しません</div>':''}</div><div class="money-actions"><button data-edit-extra="${esc(e.id)}">編集</button><button data-del-extra="${esc(e.id)}">削除</button></div></div>`).join('');
+ app.innerHTML=head('お小遣い残高帳')+`
+ <h2>お小遣い残高帳</h2><p class="muted">毎月25日開始・午前3時切り替え。支出はカレンダーと連動。</p>
+ <div class="ctrl"><button id="moneyPrev">← 前期間</button><strong>${periodStart.getMonth()+1}/25 〜 ${endInclusive.getMonth()+1}/24</strong><button id="moneyNext" ${key===moneyPeriodKey(current)?'disabled':''}>次期間 →</button></div>
+ ${!currentCycle?'<button id="moneyCurrent" class="tool">現在の期間に戻る</button>':''}
+ <div class="money-panel"><h3>25日のお小遣い（基本予算）</h3><label for="moneyBudget" class="money-muted">${esc(key)} の基本予算（円）</label><input id="moneyBudget" type="number" min="0" step="1" inputmode="numeric" value="${budget||''}" placeholder="例：35000"><div class="money-muted" style="margin-top:6px">この期間の基本予算を設定・修正できます。入力時に自動保存。</div></div>
+ <div class="money-panel"><div class="money-centered money-muted">${pastPeriod?'期間終了時の残高':'現在までの残高'}</div><div class="money-big">${moneyValue(balance)}</div><div class="money-centered money-muted">基本 ${moneyValue(budget)} ＋ 臨時 ${moneyValue(extraTotal)} − 支出 ${moneyValue(expenses)}</div></div>
+ <div class="money-stats"><div class="money-stat"><span class="money-muted">残り日数（今日を含む）</span><b>${remaining}日</b></div><div class="money-stat"><span class="money-muted">残り1日の使用可能額</span><b>${remaining?moneyValue(daily):'—'}</b></div><div class="money-stat"><span class="money-muted">当初の1日基準</span><b>${moneyValue(baseline)}</b></div><div class="money-stat"><span class="money-muted">基準平均までの節約必要額</span><b>${remaining?(needSave>0?moneyValue(needSave):'なし（—）'):'—'}</b></div></div>
+ <div class="money-panel money-centered"><div class="money-muted">当初基準との差（1日あたり）</div><div style="margin:10px 0"><span class="money-diff ${diff>0?'positive':diff===0?'neutral':''}">${remaining?(diff>=0?'+':'−')+moneyValue(Math.abs(diff))+' / 日':'—'}</span></div><div class="money-muted">マイナスは黄色文字で表示</div></div>
+ <div class="money-panel"><div class="row" style="justify-content:space-between"><strong>予算残高</strong><strong>${available>0?percent.toFixed(1)+'%':'—'}</strong></div><div class="money-balance" style="margin:9px 0"><div style="width:${percent}%"></div></div><div class="row money-muted" style="justify-content:space-between"><span>使用 ${moneyValue(expenses)}</span><span>残高 ${moneyValue(balance)}</span></div></div>
+ <div class="money-panel"><h3>臨時収入（25日以外）</h3><div class="money-edit"><div><label class="money-muted" for="extraDate">入金日</label><input type="date" id="extraDate" value="${esc(data.allowance.draftDate||iso(today))}" min="${key}" max="${iso(endInclusive)}"></div><div><label class="money-muted" for="extraAmount">金額（円）</label><input type="number" inputmode="numeric" min="1" step="1" id="extraAmount" placeholder="例：5000"></div></div><button class="tool" id="moneyAdd">＋ 臨時収入を追加</button><p class="money-muted">入金日が25日の場合は基本予算の欄を使用します。臨時収入は複数回登録できます。</p><div>${moneyRows||'<div class="money-muted">この期間の臨時収入はまだありません。</div>'}</div></div>
+ <div class="note">支出はカレンダーの日別入力「お金」から自動で集計します。未来の日付の収入・支出は、当日になるまで残高に反映しません。過去の期間も表示できます。</div>`;
+ nav();
+ app.querySelector('#moneyPrev').onclick=()=>{data.allowance.viewCycle=iso(shiftMonth25(periodStart,-1));save();showMoney()};
+ app.querySelector('#moneyNext').onclick=()=>{data.allowance.viewCycle=iso(shiftMonth25(periodStart,1));save();showMoney()};
+ const cur=app.querySelector('#moneyCurrent');if(cur)cur.onclick=()=>{delete data.allowance.viewCycle;save();showMoney()};
+ app.querySelector('#moneyBudget').oninput=e=>{const v=e.target.value;if(v!==''&&(!Number.isSafeInteger(Number(v))||Number(v)<0)){return}if(v==='')delete data.allowance.budgets[key];else data.allowance.budgets[key]=Number(v);save();};
+ app.querySelector('#moneyBudget').onchange=()=>showMoney();
+ app.querySelector('#extraDate').onchange=e=>{data.allowance.draftDate=e.target.value;save()};
+ app.querySelector('#moneyAdd').onclick=()=>{
+  const date=app.querySelector('#extraDate').value,amt=Number(app.querySelector('#extraAmount').value);
+  if(!date||date<key||date>=iso(periodEnd)){alert('この会計期間内の日付を選んでください。');return}
+  if(date.slice(8)==='25'){alert('25日の入金は「基本予算」に入力してください。');return}
+  if(!Number.isSafeInteger(amt)||amt<=0){alert('臨時収入は1円以上の整数で入力してください。');return}
+  data.allowance.extras.push({id:String(Date.now())+'-'+Math.random().toString(36).slice(2),date,amount:amt});
+  save();showMoney();
+ };
+ app.querySelectorAll('[data-del-extra]').forEach(b=>b.onclick=()=>{if(!confirm('この臨時収入を削除しますか？'))return;data.allowance.extras=data.allowance.extras.filter(e=>e.id!==b.dataset.delExtra);save();showMoney()});
+ app.querySelectorAll('[data-edit-extra]').forEach(b=>b.onclick=()=>{const e=data.allowance.extras.find(x=>x.id===b.dataset.editExtra);if(!e)return;const date=prompt('入金日（YYYY-MM-DD）',e.date);if(date===null)return;if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||date<key||date>=iso(periodEnd)||date.slice(8)==='25'){alert('25日以外で、この期間内の正しい日付を指定してください。');return}const val=prompt('金額（円）',String(e.amount));if(val===null)return;const amt=Number(val);if(!Number.isSafeInteger(amt)||amt<=0){alert('1円以上の整数で入力してください。');return}e.date=date;e.amount=amt;save();showMoney()});
+}
+// Graph state is intentionally held outside render(), so changing a metric will not reset the filters.
+const graphState={mode:'previous',category:'health',metrics:['fatigue'],monthA:'',monthB:'',start:'',end:'',picked:null};
+const graphDefs={fatigue:{name:'疲れ',color:'#D2617A'},hours:{name:'睡眠',color:'#3F82BC'},weight:{name:'体重',color:'#3D916D'},bowel:{name:'便通',color:'#9667B0'},spending:{name:'支出',color:'#C28735'},balance:{name:'残高',color:'#3F82BC'},daily:{name:'日割り余力',color:'#3D916D'},income:{name:'臨時収入',color:'#9667B0'}};
+function graphMonthKey(d,cat){const x=cat==='money'?monthCycle(d):new Date(d.getFullYear(),d.getMonth(),1);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}`}
+function graphMonthDate(k,cat){const a=k.split('-').map(Number);return new Date(a[0],a[1]-1,cat==='money'?25:1)}
+function graphShift(k,n,cat){const d=graphMonthDate(k,cat);return graphMonthKey(new Date(d.getFullYear(),d.getMonth()+n,d.getDate()),cat)}
+function graphMonthLabel(k,cat){const [y,m]=k.split('-');return `${y}年${Number(m)}月${cat==='money'?'25日〜':''}`}
+function graphNum(m,date){const key=iso(date),r=data.days[key]||{};if(m==='bowel')return r.bowel==='○'?1:r.bowel==='△'?.5:r.bowel==='×'?0:null;if(['hours','fatigue','weight','spending'].includes(m)){if(r[m]===undefined||r[m]===null||r[m]==='')return null;let n=Number(r[m]);return Number.isFinite(n)?n:null}return null}
+function graphMoneyRows(start,length){let budget=Number(data.allowance.budgets[iso(start)]||0),income=0,spent=0;const x=[];const today=new Date(lifeDate()+'T12:00:00'),extras=data.allowance.extras||[];for(let i=0;i<length;i++){let d=dates(start,1)[0];d.setDate(d.getDate()+i);let k=iso(d);if(d>today){x.push({balance:null,daily:null,income:null,spending:null});continue}let dailyIncome=extras.filter(e=>e.date===k).reduce((a,e)=>a+(Number(e.amount)||0),0);income+=dailyIncome;let dailySpent=moneyForDay(k);spent+=dailySpent;let remaining=length-i;let b=budget+income-spent;x.push({balance:b,daily:b/remaining,income:dailyIncome,spending:dailySpent})}return x}
+function graphData(k,cat,metric){const first=graphMonthDate(k,cat);const length=cat==='money'?moneyDayCount(first):new Date(first.getFullYear(),first.getMonth()+1,0).getDate();const sums=cat==='money'?graphMoneyRows(first,length):null;const today=new Date(lifeDate()+'T12:00:00');return Array.from({length:length},(_,i)=>{const d=new Date(first);d.setDate(first.getDate()+i);const v=d>today?null:cat==='money'?(sums[i][metric]??null):graphNum(metric,d);return {day:i+1,date:iso(d),value:v}})}
+function graphFree(metric,start,end){const a=new Date(start+'T12:00:00'),b=new Date(end+'T12:00:00'),now=new Date(lifeDate()+'T12:00:00');const count=Math.round((b-a)/86400000)+1;const output=[];for(let i=0;i<Math.min(370,Math.max(0,count));i++){let d=new Date(a);d.setDate(d.getDate()+i);let v=d>now?null:graphNum(metric,d);if(metric==='income'){v=d>now?null:(data.allowance.extras||[]).filter(e=>e.date===iso(d)).reduce((sum,e)=>sum+Number(e.amount||0),0)}if(metric==='balance'||metric==='daily'){let cycle=monthCycle(d),all=graphMoneyRows(cycle,moneyDayCount(cycle));v=all[Math.round((d-cycle)/86400000)]?.[metric]??null}output.push({day:i+1,date:iso(d),value:v})}return output}
+function graphFmt(m,v){if(v===null||v===undefined)return '—';if(m==='bowel')return v===1?'○':v===.5?'△':'×';if(['spending','income','balance','daily'].includes(m))return Math.round(v).toLocaleString('ja-JP')+'円';if(m==='hours')return Number(v).toFixed(1)+'h';if(m==='weight')return Number(v).toFixed(1)+'kg';return String(v)}
+function showGraph(){
+ const g=graphState,cat=g.category;const today=new Date(lifeDate()+'T12:00:00');const thisM=graphMonthKey(today,cat),lastM=graphShift(thisM,-1,cat);
+ if(!g.monthA)g.monthA=lastM;if(!g.monthB)g.monthB=thisM;
+ if(!g.start){const d=new Date(today);d.setDate(d.getDate()-27);g.start=iso(d)}if(!g.end)g.end=iso(today);
+ const options=Array.from({length:49},(_,i)=>{const k=graphShift(thisM,-i,cat);return `<option value="${k}">${graphMonthLabel(k,cat)}</option>`}).join('');
+ const metrics=cat==='health'?['fatigue','hours','weight','bowel','spending']:['balance','daily','spending','income'];g.metrics=g.metrics.filter(k=>metrics.includes(k));if(!g.metrics.length)g.metrics=[metrics[0]];
+ const labels=g.mode==='previous'?[lastM,thisM]:[g.monthA,g.monthB];const error=g.mode==='custom'&&(!/^\d{4}-\d{2}-\d{2}$/.test(g.start)||!/^\d{4}-\d{2}-\d{2}$/.test(g.end)||g.end<g.start||Math.round((new Date(g.end)-new Date(g.start))/86400000)>369);
+ const series=error?[]:g.metrics.flatMap(metric=>g.mode==='custom'?[{metric,label:'指定期間',points:graphFree(metric,g.start,g.end),previous:false}]:labels.map((k,j)=>({metric,label:graphMonthLabel(k,cat),points:graphData(k,cat,metric),previous:j===0})));
+ const nonnull=series.flatMap(s=>s.points.map(p=>p.value).filter(v=>v!==null));const mins={},maxs={};g.metrics.forEach(m=>{let vals=series.filter(s=>s.metric===m).flatMap(s=>s.points.map(p=>p.value).filter(v=>v!==null));mins[m]=m==='fatigue'||m==='bowel'||m==='hours'||['spending','income'].includes(m)?0:Math.min(...vals);maxs[m]=m==='fatigue'?9:m==='bowel'?1:Math.max(...vals);if(!Number.isFinite(mins[m]))mins[m]=0;if(!Number.isFinite(maxs[m])||maxs[m]<=mins[m])maxs[m]=mins[m]+1});
+ const length=Math.max(1,...series.map(s=>s.points.length)),W=330,H=205,L=29,R=10,T=15,B=30;const xp=i=>L+i/Math.max(1,length-1)*(W-L-R),yp=(m,v)=>T+(1-(v-mins[m])/(maxs[m]-mins[m]))*(H-T-B);const paths=series.map(s=>{let segments=[],part=[];s.points.forEach((p,i)=>{if(p.value===null){if(part.length)segments.push(part.join(' '));part=[]}else part.push((part.length?'L':'M')+xp(i).toFixed(1)+' '+yp(s.metric,p.value).toFixed(1))});if(part.length)segments.push(part.join(' '));return segments.map(segment=>`<path d="${segment}" stroke="${graphDefs[s.metric].color}" stroke-width="${s.previous?2:2.7}" ${s.previous?'stroke-dasharray="5 4"':''} fill="none" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}).join('');
+ const ticks=Array.from({length:5},(_,i)=>{const y=T+i*(H-T-B)/4;return `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#e4e9ed"/><text x="${L-5}" y="${y+3}" text-anchor="end" fill="#74808d" font-size="9">${100-i*25}%</text>`}).join('');
+ const tickDays=[1,Math.max(2,Math.round(length/4)),Math.max(2,Math.round(length/2)),Math.max(2,Math.round(3*length/4)),length];const bottom=tickDays.map(n=>`<text x="${xp(n-1)}" y="${H-9}" text-anchor="middle" fill="#657181" font-size="10">${g.mode==='custom'?n:n+'日'}</text>`).join('');
+ const legend=series.map(s=>`<span><i class="graph-dot" style="background:${graphDefs[s.metric].color}"></i>${graphDefs[s.metric].name}・${s.label}${s.previous?'（破線）':''}</span>`).join('');
+ app.innerHTML=head('グラフ')+`<h2>生活分析グラフ</h2><div class="graph-modes"><button data-mode="previous" class="${g.mode==='previous'?'active':''}">前月比</button><button data-mode="compare" class="${g.mode==='compare'?'active':''}">指定月比較</button><button data-mode="custom" class="${g.mode==='custom'?'active':''}">自由期間</button></div><div class="graph-modes"><button data-category="health" class="${cat==='health'?'active':''}">健康（暦月）</button><button data-category="money" class="${cat==='money'?'active':''}">お小遣い（25日始まり）</button></div>
+ ${g.mode==='compare'?`<div class="graph-row"><label>比較月A<select id="graphA">${options}</select></label><label>比較月B<select id="graphB">${options}</select></label></div>`:g.mode==='custom'?`<div class="graph-row"><label>開始日<input id="graphStart" type="date" value="${esc(g.start)}"></label><label>終了日<input id="graphEnd" type="date" value="${esc(g.end)}"></label></div>`:`<p class="muted">${graphMonthLabel(lastM,cat)} と ${graphMonthLabel(thisM,cat)} を比較</p>`}
+ <div class="graph-picks">${metrics.map(m=>`<button data-metric="${m}" class="${g.metrics.includes(m)?'active':''}">${graphDefs[m].name}</button>`).join('')}</div><p class="graph-note">項目は複数選択可能。比較時の破線は前月・比較月A。異なる単位は各項目の範囲を0〜100%に正規化して重ねます。</p>
+ ${error?'<div class="note">期間は開始日から終了日まで、最大370日で指定してください。</div>':`<div class="graph-chart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="選択したデータの推移グラフ">${ticks}${paths}${bottom}</svg></div><div class="graph-legend">${legend}</div>${nonnull.length?'':'<p class="note">指定期間にはグラフに表示できる記録がありません。</p>'}`}
+ <div class="card"><strong>日付の記録を見る</strong><p class="graph-note">日付を選ぶとメモと各数値を確認できます。</p><label for="graphPickDay" class="muted">${g.mode==='custom'?'指定範囲内の日付':'比較日（1〜31日）'}</label><input id="graphPickDay" type="${g.mode==='custom'?'date':'number'}" ${g.mode==='custom'?`min="${esc(g.start)}" max="${esc(g.end)}" value="${esc(g.picked&&/^\d{4}-/.test(g.picked)?g.picked:g.end)}"`:`min="1" max="31" value="${Number(g.picked)||1}"`}><div id="graphDetail" class="graph-detail" style="margin-top:12px"></div></div>`;
+ nav();app.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{g.mode=b.dataset.mode;g.picked=null;showGraph()});app.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{g.category=b.dataset.category;g.monthA='';g.monthB='';g.picked=null;showGraph()});app.querySelectorAll('[data-metric]').forEach(b=>b.onclick=()=>{let m=b.dataset.metric;g.metrics=g.metrics.includes(m)?g.metrics.filter(x=>x!==m):[...g.metrics,m];if(!g.metrics.length)g.metrics=[m];showGraph()});
+ const a=app.querySelector('#graphA'),b=app.querySelector('#graphB');if(a){a.value=g.monthA;b.value=g.monthB;a.onchange=()=>{g.monthA=a.value;showGraph()};b.onchange=()=>{g.monthB=b.value;showGraph()}}
+ const start=app.querySelector('#graphStart');if(start){start.onchange=()=>{g.start=start.value;showGraph()};app.querySelector('#graphEnd').onchange=e=>{g.end=e.target.value;showGraph()}}
+ const pick=app.querySelector('#graphPickDay');const detail=app.querySelector('#graphDetail');function drawDetail(){g.picked=pick.value;let chosen=g.mode==='custom'?[{date:pick.value,label:'指定期間'}]:labels.map((k)=>{let first=graphMonthDate(k,cat),d=new Date(first);d.setDate(d.getDate()+Math.max(0,(Number(pick.value)||1)-1));return {date:iso(d),label:graphMonthLabel(k,cat),valid:monthCycle(d).getTime()===monthCycle(first).getTime()&&cat==='money'||cat==='health'&&d.getMonth()===first.getMonth()}});detail.innerHTML=chosen.filter(c=>c.valid!==false).map(c=>{let r=data.days[c.date]||{};let inDate=new Date(c.date+'T12:00:00');let future=inDate>today;let vals=['fatigue','hours','weight','bowel','spending'].map(m=>`${graphDefs[m].name}：${future?'—':graphFmt(m,graphNum(m,inDate))}`).join('　');return `<div style="margin-bottom:9px"><strong>${esc(c.label)}・${esc(c.date)}</strong><br>${esc(vals)}<br>メモ：${esc(future?'—':r.memo||'—')}</div>`}).join('')||'この日付は選択した期間にありません。'}pick.onchange=drawDetail;drawDetail();
+}
+
+// Local device export and guarded restore. No network transfer.
+function saveDownload(name,content,type){
+ const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+function backupStamp(){const d=new Date(),z=n=>String(n).padStart(2,'0');return `${d.getFullYear()}${z(d.getMonth()+1)}${z(d.getDate())}-${z(d.getHours())}${z(d.getMinutes())}`}
+function exportJson(){saveDownload(`seikatsu-os-log-backup-${backupStamp()}.json`,JSON.stringify({app:'生活OSログ',format:1,exportedAt:new Date().toISOString(),data},null,2),'application/json;charset=utf-8')}
+function csvCell(x){const value=String(x??'');return `"${value.replace(/"/g,'""')}"`}
+function csvFile(title,headers,rows){const lines=[headers,...rows].map(row=>row.map(csvCell).join(','));saveDownload(`seikatsu-os-log-${title}-${backupStamp()}.csv`,'\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
+function exportDays(){
+ const rows=Object.entries(data.days).sort(([a],[b])=>a.localeCompare(b)).map(([day,r])=>[day,r.fatigue,r.hours,r.bowel,r.weather,r.weight,r.spending,r.memo,r.autoSleep?'自動':'手入力',r.bedTime,r.wakeTime]);
+ csvFile('daily',['日付','疲労度','睡眠時間(h)','便通','天気','体重(kg)','支出(円)','メモ','睡眠の記録方法','就寝日時','起床日時'],rows)
+}
+function exportAllowance(){
+ const rows=[...Object.entries(data.allowance.budgets).map(([date,amount])=>[date,'25日の基本予算',amount,'']),...data.allowance.extras.map(e=>[e.date,'臨時収入',e.amount,e.id])];
+ rows.sort((a,b)=>a[0].localeCompare(b[0]));csvFile('income',['日付','種類','金額(円)','管理ID'],rows)
+}
+function exportSleep(){csvFile('sleep',['種類','日時'],data.sleepEvents.map(e=>[e.kind,e.at]))}
+function validateRestore(parsed){
+ if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw Error('JSONファイルの形式が正しくありません。');
+ const restored=parsed.data;
+ if(!restored||typeof restored!=='object'||Array.isArray(restored))throw Error('生活OSログのバックアップではありません。');
+ if(!restored.days||typeof restored.days!=='object'||Array.isArray(restored.days))throw Error('日別記録が見つかりません。');
+ if(!('goal' in restored)&&!('sleepEvents' in restored)&&!('allowance' in restored))throw Error('必要なデータ項目が確認できません。');
+ if(restored.sleepEvents!==undefined&&(!Array.isArray(restored.sleepEvents)||restored.sleepEvents.some(e=>!e||!['起床','就寝'].includes(e.kind)||typeof e.at!=='string')))throw Error('睡眠データの形式が正しくありません。');
+ if(restored.goalPhotos!==undefined&&(!Array.isArray(restored.goalPhotos)||restored.goalPhotos.length>6||restored.goalPhotos.some(p=>typeof p!=='string'||!/^data:image\/(jpeg|png|webp);base64,/.test(p))))throw Error('写真データの形式が正しくありません。');
+ if(restored.allowance!==undefined&&(!restored.allowance||typeof restored.allowance!=='object'||Array.isArray(restored.allowance)||restored.allowance.extras!==undefined&&!Array.isArray(restored.allowance.extras)))throw Error('お小遣いデータの形式が正しくありません。');
+ if(Object.keys(restored.days).some(k=>!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(k)))throw Error('日別記録の日付が正しくありません。');
+ return typeof structuredClone==='function'?structuredClone(restored):JSON.parse(JSON.stringify(restored));
+}
+function showBackup(){
+ app.innerHTML=head('バックアップ・復元')+`<h2>バックアップ・復元</h2>
+ <div class="money-panel"><h3>① 完全バックアップ（JSON）</h3><p class="muted">日別記録、睡眠、収支、メモ、目標文章と写真をまとめて保存。復元にはこちらを使用します。</p><button class="tool" id="export">JSONを保存</button></div>
+ <div class="money-panel"><h3>② 表計算用データ（CSV）</h3><p class="muted">Excelなどで見るための出力です。写真は含まず、CSVからの復元には対応していません。</p><div class="sleepactions"><button class="tool" id="csvDays">日別記録CSV</button><button class="tool" id="csvMoney">入金CSV</button><button class="tool" id="csvSleep">睡眠時刻CSV</button></div></div>
+ <div class="money-panel"><h3>③ JSONから復元</h3><p class="muted">以前保存したJSONを読み込むと、この端末内の記録を置き換えます。先に現在のJSONを保存してください。</p>
+ <input type="file" id="restoreFile" accept=".json,application/json" aria-label="復元するJSONファイルを選択"><div id="restoreInfo" class="muted" role="status" style="margin-top:8px">ファイルはまだ選択されていません。</div>
+ <button class="tool" id="restore" disabled>内容を確認して復元</button></div>
+ <p class="note">データは端末内に保存されます。別のHTMLファイルやブラウザでは保存領域が異なる場合があります。JSONを安全な場所に保管してください。</p>`;
+ nav();app.querySelector('#export').onclick=exportJson;app.querySelector('#csvDays').onclick=exportDays;app.querySelector('#csvMoney').onclick=exportAllowance;app.querySelector('#csvSleep').onclick=exportSleep;
+ const picker=app.querySelector('#restoreFile'),info=app.querySelector('#restoreInfo'),button=app.querySelector('#restore');let candidate=null;
+ picker.onchange=async()=>{candidate=null;button.disabled=true;const f=picker.files?.[0];if(!f){info.textContent='ファイルを選択してください。';return}if(f.size>30*1024*1024){info.textContent='ファイルが大きすぎます（上限30MB）。';return}
+  try{candidate=validateRestore(JSON.parse(await f.text()));const count=Object.keys(candidate.days).length,photos=(candidate.goalPhotos||[]).length;info.textContent=`確認済み：日別記録 ${count}日、目標写真 ${photos}枚。復元すると現在の記録は置き換わります。`;button.disabled=false}catch(e){info.textContent='読み込めません：'+(e.message||'形式エラー')}
+ };
+ button.onclick=()=>{if(!candidate)return;
+  if(!confirm('現在の記録をJSONでバックアップしましたか？ まだの場合はキャンセルして「JSONを保存」を押してください。'))return;
+  if(!confirm('復元を実行すると、この端末の現在の記録は選択したファイルの内容で置き換わります。続けますか？'))return;
+  const previous=data;data=candidate;
+  if(!Array.isArray(data.sleepEvents))data.sleepEvents=[];
+  if(!Array.isArray(data.goalPhotos))data.goalPhotos=[];
+  if(typeof data.goal!=='string')data.goal='';
+  if(!data.allowance||typeof data.allowance!=='object')data.allowance={};
+  if(!data.allowance.budgets)data.allowance.budgets={};
+  if(!Array.isArray(data.allowance.extras))data.allowance.extras=[];
+  if(!save()){data=previous;info.textContent='保存できなかったため復元を中止しました。';return}
+  info.textContent='復元完了。カレンダーに戻って記録を確認してください。';candidate=null;button.disabled=true;picker.value='';
+ }
+}
+function render(){if(screen==='home')showHome();else if(screen==='calendar')showCalendar();else if(screen==='entry')showEntry();else if(screen==='memo')showMemo();else if(screen==='sleep')showSleep();else if(screen==='goal')showGoal();else if(screen==='money')showMoney();else if(screen==='graph')showGraph();else showBackup()}
+render();
+</script><script>if('serviceWorker' in navigator && location.protocol === 'https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('Offline registration failed',err)));}</script></body></html>
